@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AuthDemo
 {
@@ -42,11 +41,8 @@ namespace AuthDemo
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 Authority = "http://localhost:5000",
-                RequireHttpsMetadata = false,
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateAudience = false
-                }
+                Audience = "resource_server",
+                RequireHttpsMetadata = false
             });
 
             app.UseOpenIddict();
